@@ -1,0 +1,474 @@
+/* selecciona el elemento raíz de un árbol que representa el documento (pendiente de otra definición) */
+:root {
+  --clr-neon: hsl(317 100% 54%);
+  # --clr-bg: hsl(323 21% 16%);
+  --clr-water: hsl(166, 89%, 52%);
+  --clr-fire: hsl(5, 82%, 53%);
+  --clr-electric: hsl(58, 100%, 50%);
+  --clr-grass: hsl(119, 81%, 56%);
+  --clr-ground: hsl(22, 91%, 51%);
+
+}
+
+
+/* Responsive */
+
+
+/* barra de navegación */
+#nav-bar {
+  height: 220px;
+}
+
+.buscar {
+  padding: 5px;
+}
+
+
+.nav-bar-item {
+  margin: auto;
+}
+
+#nav-bar-top {
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+}
+
+#nav-bar-bottom {
+  width: 100%;
+  display: flex;
+
+}
+
+/* recuadro azul al rededor de los pokemones*/
+#azulneon {
+  padding: 100px;
+  border-radius: 40px;
+  background-color: transparent;
+  border: var(--clr-water) 2px solid;
+  box-shadow: inset 0 0 3em 0 var(--clr-water), 0 0 3em 0 var(--clr-water);
+
+}
+
+/* la caja donde estan todos los pokemones */
+.main-container {
+  width: 80%;
+  margin: auto;
+}
+
+/* donde esta nuestro logo */
+#encabezado {
+  background-color: white;
+  position: center;
+  text-align: center;
+}
+
+/* barra de busqueda */
+.buscar input {
+  width: 240px;
+  height: 40px;
+  padding: 0 60px;
+  font-size: 18px;
+  color: white;
+  outline: none;
+  border: 2px solid silver;
+  background: transparent;
+  border-radius: 30px;
+  transition: all 0.6s ease;
+
+}
+
+/* botón (pendiente) */
+.btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  font-size: 20px;
+
+
+}
+
+.buscar:hover input {
+  width: 240px;
+}
+
+.buscar input:focus {}
+
+/* cada uno de los pokemones (cada uno pertenece a una carta) */
+.card {
+  box-shadow: 0 0 15px 10px 0 white;
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  background-color: azure;
+  margin: auto;
+  text-align: center;
+  border: var(--clr-water) 2px solid;
+  box-shadow: inset 0 0 0.4em 0 var(--clr-water), 0 0 3em 0 var(--clr-water);
+  display: grid;
+  grid-template-columns: repeat(auto-fit);
+}
+
+.filter {
+  display: none
+}
+
+/* cuando pasas el curso aumentas el baño */
+.card:hover {
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+/* animate box shadow on hover y sombra */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Grid of cards, todos los pokemones en general */
+#pokemon-list {
+  border-width: 4px;
+  border-style: solid;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 30px;
+}
+
+/* Estilo para botón agua*/
+
+.neon-button-water {
+  margin: auto;
+  font-size: 2rem;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--clr-water);
+  border: currentColor 0.05em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 var(--clr-water), 0 0 0.5em 0 var(--clr-water);
+  position: relative;
+}
+
+/* botón de agua para crear animación */
+.neon-button-water::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--clr-water);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  /* luz del botón*/
+  filter: blur(1em);
+  /* sombra difuminada */
+  opacity: 0.7;
+}
+
+/* segunda parte de animación */
+.neon-button-water::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-water);
+  opacity: 0;
+  background-color: var(--clr-water);
+  /* cambia el fondo del botón */
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button-water:hover,
+/* pendiente botón agua*/
+.neon-button-water:focus {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.neon-button-water:hover::before,
+.neon-button-water:focus::before {
+  opacity: 1;
+}
+
+.neon-button-water:hover::after,
+.neon-button-water:focus::after {
+  opacity: 1;
+}
+
+/* Estilo para botón fire*/
+
+.neon-button-fire {
+  margin: auto;
+  font-size: 2rem;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--clr-fire);
+  border: currentColor 0.05em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+
+
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--clr-fire), 0 0 0.5em 0 var(--clr-fire);
+  position: relative;
+}
+
+.neon-button-fire::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--clr-fire);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+.neon-button-fire::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-fire);
+  opacity: 0;
+  background-color: var(--clr-fire);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button-fire:hover,
+.neon-button-fire:focus {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.neon-button-fire:hover::before,
+.neon-button-fire:focus::before {
+  opacity: 1;
+}
+
+.neon-button-fire:hover::after,
+.neon-button-fire:focus::after {
+  opacity: 1;
+}
+
+/* Estilo para botón electric*/
+
+.neon-button-electric {
+  margin: auto;
+  font-size: 2rem;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--clr-electric);
+  border: currentColor 0.05em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+
+
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--clr-electric), 0 0 0.5em 0 var(--clr-electric);
+  position: relative;
+}
+
+.neon-button-electric::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--clr-electric);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+.neon-button-electric::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-electric);
+  opacity: 0;
+  background-color: var(--clr-electric);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button-electric:hover,
+.neon-button-electric:focus {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.neon-button-electric:hover::before,
+.neon-button-electric:focus::before {
+  opacity: 1;
+}
+
+.neon-button-electric:hover::after,
+.neon-button-electric:focus::after {
+  opacity: 1;
+}
+
+/* Estilo para botón grass*/
+
+.neon-button-grass {
+  margin: auto;
+  font-size: 2rem;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--clr-grass);
+  border: currentColor 0.05em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+
+
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--clr-grass), 0 0 0.5em 0 var(--clr-grass);
+  position: relative;
+}
+
+.neon-button-grass::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--clr-grass);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+.neon-button-grass::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-grass);
+  opacity: 0;
+  background-color: var(--clr-grass);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button-grass:hover,
+.neon-button-grass:focus {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.neon-button-grass:hover::before,
+.neon-button-grass:focus::before {
+  opacity: 1;
+}
+
+.neon-button-grass:hover::after,
+.neon-button-grass:focus::after {
+  opacity: 1;
+}
+
+
+/* Estilo para botón ground*/
+
+.neon-button-ground {
+  margin: auto;
+  font-size: 2rem;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--clr-ground);
+  border: currentColor 0.05em solid;
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+
+
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--clr-ground), 0 0 0.5em 0 var(--clr-ground);
+  position: relative;
+}
+
+.neon-button-ground::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background: var(--clr-ground);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+.neon-button-ground::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em var(--clr-ground);
+  opacity: 0;
+  background-color: var(--clr-ground);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.neon-button-ground:hover,
+.neon-button-ground:focus {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.neon-button-ground:hover::before,
+.neon-button-ground:focus::before {
+  opacity: 1;
+}
+
+.neon-button-ground:hover::after,
+.neon-button-ground:focus::after {
+  opacity: 1;
+}
